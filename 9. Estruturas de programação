@@ -1,0 +1,44 @@
+---
+If
+```{r}
+a = 10
+b = 20
+if (a < b)
+{
+  print("Verdadeiro")
+}else
+{
+  print("Falso") 
+}
+```
+Ifelse
+```{r}
+x = ifelse(a < 10,"A é maior","A não é maior") #o primeiro é se o teste lógico for verdadeiro, o segundo é se o teste lógico for falso  
+x
+```
+For
+```{r}
+for (i in 1:10) {
+  print(i)
+  } #"intervalo"
+```
+While
+```{r}
+a = 1
+while(a <= 10)
+{
+  print(a)
+  a = a+1
+}
+```
+Função
+```{r}
+parouimpar <- function(x) {
+  
+  return(ifelse(x%%2==0,"Par","impar")) 
+  
+} #x%%2 -> verifica o resto da divisão, se o resto da divisão for igual a zero -> é par,  se o resto da divisão não for igual a zero -> é impar
+
+parouimpar(5)
+parouimpar(12)
+```
