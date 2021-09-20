@@ -1,0 +1,39 @@
+---
+Head (retorna os primeiros registros) e Tail (retorna os últimos registros)
+```{r}
+esoph
+#default 6 linhas
+head(esoph)
+tail(esoph)
+#10 linhas
+head(esoph, n=10) #retorna as 10 primeiras linhas
+```
+Dimensões
+```{r}
+dim(esoph) #linhas e colunas
+dim(esoph)[1] #linhas 
+dim(esoph)[2] #colunas 
+```
+Comprimento
+```{r}
+#se usar com objeto bidimensional vai retornar colunas
+length(islands) #posições 
+```
+Nomes de Colunas
+```{r}
+colnames(esoph)
+```
+Nome de Linhas
+```{r}
+rownames(esoph)
+```
+Resumo
+```{r}
+summary(esoph)
+```
+Escolher Arquivo
+```{r}
+x = file.choose()
+x
+```
+
