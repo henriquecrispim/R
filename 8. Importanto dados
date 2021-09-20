@@ -1,0 +1,19 @@
+---
+```{r}
+install.packages("xlsx")
+library(xlsx)
+```
+Texto
+```{r}
+#texto
+x = read.csv(file.choose(),header = TRUE, sep = ",") #header = TRUE -> indica que a primeira linha de dados é um cabeçalho
+x
+#ou
+x = read.csv("Credit.csv",header = TRUE, sep = ",")
+x
+```
+Excel
+```{r}
+dados = read.xlsx("Credit.xlsx",sheetIndex = 1) # sheetIndex = 1 -> qual planilha quer importar
+dados
+```
