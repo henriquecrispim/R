@@ -1,0 +1,20 @@
+```{r}
+install.packages("stargazer")
+library(stargazer)
+```
+Formato Latex
+```{r}
+stargazer(iris) #gera só o codigo, precisa colocar em um navegador de visualização de Latex
+```
+Html
+```{r}
+stargazer(iris, type="html") #gera só o codigo, precisa colocar em um navegador de visualização de Htlm
+```
+Texto
+```{r}
+stargazer(iris, type="text")
+```
+Salva em Disco
+```{r}
+stargazer(women, out="women.tex", summary=FALSE) #coloca o código no visualizador do Latex #vai ser sumarizar pois o summary=FALSE
+```
