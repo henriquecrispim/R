@@ -1,0 +1,60 @@
+Histograma
+```{r}
+trees
+hist( trees$Height)
+hist( trees$Height,  main="Árvores", ylab="Frequência",xlab="Altura", col="blue") #primeiro o título do histograma, depois o título do eixo "y" e "x" e a cor
+hist( trees$Height,  main="Árvores", ylab="Frequência",xlab="Altura", col="blue",
+      density=20, breaks=20    ) #informação mais detalhada
+```
+Densidade
+```{r}
+densidade = density(trees$Height)
+plot(densidade) #linhas
+```
+Densidade sobre o Histograma, parâmetro par
+```{r}
+#Executar com ctrl+shift+enter (ativar todo o bloco)
+hist(trees$Height, main=NULL, xlab=NULL, ylab = NULL)
+par(new=TRUE) #informa que a proxima operação vai ser um sobreposição no gráfico existente
+plot(densidade)
+```
+Dispersão (comparar variáveis contínuas)
+```{r}
+plot(trees$Girth, trees$Volume)
+plot(trees$Girth, trees$Volume, main="Árvores")
+plot(trees$Girth, trees$Volume, ylab="Cirunferência", xlab="Volume", col="blue", main="Árvores") #main = título
+#pch muda o elementog gráfico
+plot(trees$Girth, trees$Volume, ylab="Cirunferência", xlab="Volume", col="blue", main="Árvores", pch=20) #pch -> altera a formatação dos pontos no gráfico
+```
+Muda tipo
+```{r}
+plot(trees$Girth, trees$Volume, ylab="Cirunferência", xlab="Volume", col="blue", main="Árovres", pch=20, type="l")
+```
+Tremulação, diminui sobre posição
+```{r}
+plot(jitter(trees$Girth), trees$Volume, ylab="Cirunferência", xlab="Volume", col="blue", main="Árvores")
+```
+Legenda com dimensão categórica
+```{r}
+plot(CO2$conc, CO2$uptake,pch=20, col= CO2$Treatment)
+#"bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center" 0 -> posições da legenda
+legend("bottomright",legend=c("nonchilled","chilled"),cex=1, fill=c("black","red")) #primeiro é a posição, depois a legenda, cex é o tamanho, fill é a cor.
+```
+Novos dados 
+```{r}
+plot(trees) #matriz de gráficos
+```
+Divisão da tela
+```{r}
+#Executar com crtl+shift+enter
+split.screen(figs=c(2,2)) #divide a tela como 2x2
+screen(1)
+plot(trees$Girth, trees$Volume) #tela 1
+screen(2)
+plot(trees$Girth, trees$Height) #tela 2
+screen(3)
+plot(trees$Height, trees$Volume) #tela 3
+screen(4)
+hist(trees$Volume) #tela 4
+close.screen(all=TRUE)
+```
