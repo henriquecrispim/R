@@ -1,0 +1,46 @@
+Boxplot (compreender a distribuição)
+```{r}
+#pontos de fora -> outliers
+#barra de baixo -> ponto mínimo
+#barra de cima -> ponto máximo
+#linha de baixo da barra -> primeiro quartil
+#linha de cima da barra -> terceiro quartil
+#linha do centro da barra -> mediana ou o segundo quartil
+boxplot(trees$Volume, main= "Árvores", xlab = "Volume")
+boxplot(trees$Volume, main= "Árvores", xlab = "Volume", col="blue", horizontal=TRUE ) #mudando posição do boxplot
+boxplot(trees$Volume, main="Árvores", xlab = "Volume", col="blue",outline=F ) #tirando os outliers
+```
+
+```{r}
+#notch
+boxplot( trees$Height, main="Árvores", xlab = "Altura", col="blue",  notch=TRUE )
+#dados do gráfico 
+boxplot.stats(trees$Height) #visualização dos dados utilizados
+#lê apenas uma informação
+boxplot.stats(trees$Height)$stats
+```
+Vários gráficos (várias variáveis)
+```{r}
+boxplot(trees)
+```
+Agregação (juntando...)
+```{r}
+InsectSprays 
+spray = aggregate(. ~ spray, data=InsectSprays,sum)
+spray 
+```
+Gráfico de Barras
+```{r}
+#Executar com ctrl+shift+enter
+barplot(spray$count,col= gray.colors(6), xlab="Spray", ylab="Total", names.arg=spray$spray) #names.arg=spray$spray -> chamam as barras pela coluna spray
+box() #moldura ao redor do gráfico
+```
+Gráfico de Setor - Pizza
+```{r}
+pie(spray$count, labels= spray$spray, main="Spray",col=c(1:6)) #labels -> categoria #fill é a cor
+```
+Pizza com legenda
+```{r}
+pie(spray$count,labels=NA,  main="Spray",col=c(1:6))
+legend("bottomright",legend=spray$spray ,cex=1, fill=c(1:6)) #fill é a cor
+```
