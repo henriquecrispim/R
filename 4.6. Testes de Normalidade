@@ -1,0 +1,50 @@
+Repetir o experimento
+```{r}
+set.seed(123)
+```
+Gera mil variáveis normalmente distribuidas
+```{r}
+x = rnorm(1000) #rnorm -> geral dados normalmente distribuídos
+```
+Gráfico QQ (verifica a distribuição dos dados)
+```{r}
+#rodar com Ctrl+shift+enter
+qqnorm(x)
+#linha
+qqline(x)
+```
+Teste de Shapiro (verifica a distribuição dos dados)
+Valor de p acima de 0,05, não há indício para a não confirmar a hipótese nula de dados normalmente distribuidos
+```{r}
+shapiro.test(x)  #P-valor alto, logo não rejeitamos a hipótese nula, há evidências para confirmar a hipótese nula de que os dados estão normalmente distribuídos
+```
+Histograma com linha de densidade (dados normalmente distribuídos) (verifica a distribuição dos dados)
+```{r}
+#rodar com Ctrl+shift+enter
+hist(x, main="")
+par(new=TRUE)
+plot(density(x),ylab = "", xlab = "", axes=F, lwd=2.5 ) 
+```
+Dados não normalmente distribuidos
+```{r}
+#rodar com Ctrl+shift+enter
+#install.packages("semTools")
+library(semTools)
+m = mvrnonnorm(1000, c(1, 2), matrix(c(10, 2, 2, 5), 2, 2),
+                 skewness = c(5, 2), kurtosis = c(3, 3))
+qqnorm(m)
+qqline(m)
+```
+
+
+```{r}
+shapiro.test(m)
+```
+
+
+```{r}
+#rodar com Ctrl+shift+enter
+hist(m, main="")
+par(new=TRUE)
+plot(density(m),ylab = "", xlab = "", axes=F, lwd=2.5 ) 
+```
