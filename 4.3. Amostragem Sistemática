@@ -1,0 +1,26 @@
+Amostra Sistemática
+```{r}
+install.packages("TeachingSampling")
+library("TeachingSampling")
+```
+Amostra sistematica de tamanha 150, 10 grupos
+```{r}
+amostra = S.SY(150, 10) #o início (primeiro número) é aletório mas tem uma sistemática de 10 em 10
+amostra
+```
+Tamanho
+```{r}
+dim(amostra)
+```
+Usamos em iris
+```{r}
+amostrairis = iris[amostra,] #pegando só as linhas da amostra
+```
+Verificamos
+```{r}
+amostrairis ##verificando as linhas da amostra
+```
+Tamanho (dimensão)
+```{r}
+dim(amostrairis)
+```
