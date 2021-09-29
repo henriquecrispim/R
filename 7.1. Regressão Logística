@@ -1,0 +1,51 @@
+Carga de dados
+```{r}
+eleicao = read.csv("Eleicao.csv",sep=';',header=T)
+eleicao = read.csv(file.choose(),sep=';',header=T)
+eleicao
+```
+Gráfico e visualização
+```{r}
+plot(eleicao$DESPESAS,eleicao$SITUACAO)
+summary(eleicao)
+```
+Correlação
+```{r}
+cor(eleicao$DESPESAS,eleicao$SITUACAO)
+```
+Modelo de Regressão Logística
+```{r}
+modelo = glm(SITUACAO ~ DESPESAS,data=eleicao,family="binomial") #family="binomial" -> indica que vamos criar um Modelo de Regressão Logística
+summary(modelo)
+```
+Modelo comparado aos dados
+```{r}
+#Executar com ctrl+shift+enter
+plot(eleicao$DESPESAS,eleicao$SITUACAO,col='red',pch=20)
+points(eleicao$DESPESAS, modelo$fitted, pch=4) #modelo$fitted -> modelo ajustado
+```
+Testar o modelo com os próprios candidatos
+```{r}
+prever = predict(modelo,newdata=eleicao,type="response")
+prever = prever >= 0.5 #se o previsto foi maior ou igual a 0.5 retorna TRUE
+prever
+```
+Avaliar performance 
+```{r}
+confusao = table(prever,eleicao$SITUACAO) #comparando o previsto com o que realmente aconteceu
+confusao #errou 5 previsões #FALSE (0) -> acertou que não seria eleito #FALSE (1) -> errou que não seria eleito #TRUE (0) -> errou que seria eleito #TRUE (1) -> acertou que seria eleito
+taxaacerto = (confusao[1] + confusao[4]) / sum(confusao) # o que ele acertou dividido pelo total
+taxaacerto #performance do modelo  
+```
+Novos candidatos
+```{r}
+prevereleicao = read.csv("NovosCandidatos.csv",sep=';',header=T)
+prevereleicao = read.csv(file.choose(),sep=';',header=T)
+prevereleicao
+```
+Previsão
+```{r}
+prevereleicao$RESULT = predict(modelo,newdata=prevereleicao,type="response") 
+prevereleicao$RESULT
+prevereleicao$RESULT >= 0.5
+```
