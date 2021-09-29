@@ -1,0 +1,67 @@
+
+```{r}
+install.packages("forecast")
+library(forecast)
+```
+Conhecendo os dados
+```{r}
+AirPassengers
+start(AirPassengers) #início da série temporal
+end(AirPassengers) #fim da série temporal
+frequency(AirPassengers) # ciclo dos dados se repetem a cada 12 intervalos
+```
+Gráficos
+```{r}
+#Executar com Crtrl+ Shift + Enter
+plot(AirPassengers)
+plot(aggregate(AirPassengers))  
+```
+Gera uma janela
+```{r}
+subst = window(AirPassengers,start=c(1960,1), end=c(1960,12)) #ver apenas um intervalo dos dados
+subst
+plot(subst)
+```
+Decomposição (separar os elementos de uma série temporal)
+```{r}
+dec = decompose(AirPassengers)
+dec
+```
+
+
+```{r}
+attributes(dec) #atributos
+dec$seasonal #pegando somentos os dados sazonais
+```
+Analisando os elementos da decomposição (cada atributo)
+```{r}
+#Executar com Crtrl+ Shift + Enter
+plot(dec)
+plot(dec$x)
+plot(dec$seasonal)
+plot(dec$trend)
+plot(dec$random)
+```
+Suavização Exponencial (informações mais recentes tem mais influência sobre as previsões futuras, já as informações mais antigas não possuem tanta influência sobre as previsões futuras)
+```{r}
+#suavização exponencial
+ets = ets(AirPassengers)
+ets
+```
+Previsão
+```{r}
+previsao = forecast(ets, h=12) # h=12 -> intervalo que queremos prever para frente
+plot(previsao)
+previsao
+```
+Arima
+```{r}
+arima = auto.arima(AirPassengers)
+arima
+```
+Previsão
+```{r}
+previsao = forecast(arima, h=12)
+plot(previsao)
+previsao
+```
